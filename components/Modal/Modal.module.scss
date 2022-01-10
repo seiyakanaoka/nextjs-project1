@@ -1,0 +1,52 @@
+.window {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.5s ease 0.3s 1 normal;
+}
+
+.window {
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    } /*アニメーション開始時は不透明度0%*/
+    100% {
+      opacity: 1;
+    } /*アニメーション終了時は不透明度100%*/
+  }
+}
+
+.modal {
+  background-color: #eeeeee;
+  width: 40%;
+  height: 200px;
+  position: fixed;
+  top: 200px;
+  left: 30%;
+  display: flex;
+  justify-content: center;
+  padding-top: 70px;
+  animation: fadeIn 0.5s ease 0.3s 1 normal;
+
+  > #close {
+    cursor: pointer;
+  }
+
+  > .back {
+    padding-right: 40px;
+  }
+}
+
+.modal {
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    } /*アニメーション開始時は不透明度0%*/
+    100% {
+      opacity: 1;
+    } /*アニメーション終了時は不透明度100%*/
+  }
+}

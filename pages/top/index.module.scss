@@ -1,0 +1,13 @@
+.block {
+  height: 200px;
+  padding: 0 24px;
+  display: flex;
+
+  > div {
+    width: calc(100% / 3);
+
+    > h3 {
+      text-align: center;
+    }
+  }
+}
