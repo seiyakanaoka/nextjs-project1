@@ -1,0 +1,72 @@
+.detail-page {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 100%;
+  background-color: #eeeeee;
+  border-radius: 24px 0 0 24px;
+
+  > .header {
+    padding: 14px;
+  }
+
+  > .body {
+    padding: 14px;
+  }
+}
+
+.close-btn {
+  > button {
+    padding: 4px;
+    border: 1px solid #000;
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: transparent;
+    cursor: pointer;
+  }
+}
+
+.detail-header {
+  text-align: center;
+
+  > .title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+}
+
+.detail-body {
+  padding: 24px;
+
+  > .bool {
+    width: 100%;
+  }
+}
+
+.qual-content {
+  width: 100%;
+  text-align: center;
+
+  > .content {
+    font-size: 24px;
+  }
+}
+
+.qual-done {
+  padding: 8px;
+  text-align: left;
+
+  > .done {
+    font-size: 16px;
+  }
+}
+
+.qual-pass {
+  padding: 8px;
+  text-align: left;
+
+  > .pass {
+    font-size: 16px;
+  }
+}
