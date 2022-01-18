@@ -9,7 +9,7 @@ type Props = {
 };
 
 const LayoutTopHeader: NextPage<Props> = (props) => {
-  const { title, isModal, openModal } = props;
+  const { title, openModal } = props;
 
   return (
     <>

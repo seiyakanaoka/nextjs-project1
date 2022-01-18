@@ -14,7 +14,9 @@ export const UseInput = () => {
   });
 
   const changeModal = () => setModal(!isShow);
-  const closeDetail = () => setDetail(!isDetail);
+  const closeDetail = () => {
+    setDetail(false);
+  };
   const openDetail = (item: qualifications) => {
     setQual(item);
     setDetail(true);

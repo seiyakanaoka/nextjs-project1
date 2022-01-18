@@ -1,14 +1,20 @@
 import { NextPage } from "next";
+import { useState } from "react";
 import LayoutTopHeader from "@/components/partials/Header/LayoutTopHeader";
 import Detail from "@/components/partials/ListDetail/detail";
 import Modal from "@/components/partials/Modal/Modal";
+import { CSSTransition } from "react-transition-group";
 import styles from "pages/list/index.module.scss";
 import { qualificationList } from "@/type/List/qualificationList";
 import { UseInput } from "@/components/hooks/List/list";
+import trans from "pages/list/transition.module.scss";
 
 const List: NextPage = () => {
   const { qual, isShow, isDetail, closeDetail, openDetail, changeModal } =
     UseInput();
+
+  const [is, setIs] = useState(false);
+  console.log(is);
 
   const qualificationListApiResponse: qualificationList = {
     list: [
@@ -52,14 +58,22 @@ const List: NextPage = () => {
 
   return (
     <>
-      <div
-        className={`${styles["overlay"]} ${
-          isShow ? styles["-modal"] : undefined
-        } ${isDetail ? styles["-detail"] : undefined}`}
+      <CSSTransition classNames={trans} in={isShow} timeout={200} unmountOnExit>
+        <div className={styles["overlay"]}>
+          <Modal changeModal={changeModal} />
+        </div>
+      </CSSTransition>
+
+      <CSSTransition
+        classNames={trans}
+        in={isDetail}
+        timeout={800}
+        unmountOnExit
       >
-        <Detail qual={qual} isDetail={isDetail} closeDetail={closeDetail} />
-        <Modal isShow={isShow} closeModal={changeModal} />
-      </div>
+        <div className={styles["overlay"]}>
+          <Detail qual={qual} isDetail={isDetail} closeDetail={closeDetail} />
+        </div>
+      </CSSTransition>
       <div className={`${styles["list-page"]}`}>
         <div className={styles["header"]}>
           <div className={styles["list-header"]}>
