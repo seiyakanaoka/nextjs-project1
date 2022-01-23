@@ -1,38 +1,27 @@
 .detail-page {
+  z-index: 3;
   position: fixed;
-  top: 0;
   right: 0;
   width: 40%;
   height: 100%;
   background-color: #eeeeee;
-  border-radius: 24px 0 0 24px;
+  padding: 14px;
 
   > .header {
     padding: 14px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
   }
 
   > .body {
     padding: 14px;
   }
-}
 
-.close-btn {
-  > button {
-    padding: 4px;
-    border: 1px solid #000;
-    border-radius: 6px;
-    font-size: 16px;
-    background-color: transparent;
-    cursor: pointer;
-  }
-}
-
-.detail-header {
-  text-align: center;
-
-  > .title {
-    font-size: 24px;
-    font-weight: bold;
+  > .actions {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
   }
 }
 
@@ -68,5 +57,56 @@
 
   > .pass {
     font-size: 16px;
+  }
+}
+
+.close-btn {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+
+  > .close {
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 30px;
+  }
+
+  > .close::before,
+  .close::after {
+    /* 共通設定 */
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px; /* 棒の幅（太さ） */
+    height: 30px; /* 棒の高さ */
+    background: #333;
+  }
+
+  > .close::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  > .close::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+}
+
+.edit-btn,
+.delete-btn {
+  font-size: 18px;
+  padding: 14px;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+
+  &.-edit {
+    color: #66cc66;
+  }
+
+  &.-delete {
+    color: #ff6666;
+    font-weight: bold;
   }
 }

@@ -1,22 +1,12 @@
 .overlay {
+  z-index: 2;
   position: fixed;
   top: 0;
   left: 0;
-  display: none;
-
-  &.-modal {
-    display: block;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-
-  &.-detail {
-    display: block;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-  }
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-page {
@@ -36,6 +26,15 @@
 .modal-links {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  > .new {
+    padding: 24px 20px 20px;
+  }
+
+  > .edit {
+    padding: 24px 20px 20px;
+  }
 
   > .back {
     padding: 20px;
@@ -54,7 +53,15 @@
   cursor: pointer;
 }
 
-.cancel-btn {
+#new-link {
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cancel-btn,
+.new-btn,
+.edit-btn {
   font-size: 20px;
   font-weight: bold;
   background-color: transparent;

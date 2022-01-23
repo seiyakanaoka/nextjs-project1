@@ -1,15 +1,16 @@
-import { useState } from "react";
+import React, { useEffect } from "react";
 import { NextPage } from "next";
 import styles from "@/components/partials/Header/LayoutTopHeader.module.scss";
 
 type Props = {
   title: string;
-  isModal: boolean;
   openModal: () => void;
 };
 
-const LayoutTopHeader: NextPage<Props> = (props) => {
-  const { title, openModal } = props;
+const LayoutTopHeader: NextPage<Props> = ({ title, openModal }) => {
+  useEffect(() => {
+    console.log("Header");
+  });
 
   return (
     <>
@@ -27,4 +28,7 @@ const LayoutTopHeader: NextPage<Props> = (props) => {
   );
 };
 
-export default LayoutTopHeader;
+export default React.memo(
+  LayoutTopHeader,
+  (prev, next) => prev.title === next.title
+);

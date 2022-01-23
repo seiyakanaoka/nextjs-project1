@@ -1,32 +1,44 @@
+import React, { useEffect } from "react";
 import { NextPage } from "next";
+import { CSSTransition } from "react-transition-group";
 import styles from "@/components/partials/ListDetail/detail.module.scss";
-import { qualifications } from "@/type/ListDetail/qualification";
+import DetailTrans from "@/assets/styles/Transition/DetailTransition.module.scss";
+import { qualification } from "@/type/List/qualification";
 
 type Props = {
-  qual: qualifications;
+  qual: qualification;
   isDetail: boolean;
   closeDetail: () => void;
+  deleteQualification: (id: number) => void;
 };
 
-const Detail: NextPage<Props> = (props) => {
-  const { isDetail, closeDetail, qual } = props;
-  if (isDetail) {
-    return (
-      <>
+const Detail: NextPage<Props> = ({
+  closeDetail,
+  qual,
+  isDetail,
+  deleteQualification,
+}) => {
+  useEffect(() => {
+    console.log("Detail");
+  });
+  return (
+    <>
+      <CSSTransition
+        classNames={DetailTrans}
+        in={isDetail}
+        timeout={500}
+        unmountOnExit
+      >
         <div className={styles["detail-page"]}>
-          <div className={styles["header"]}>
-            <div className={styles["close-btn"]}>
-              <button onClick={closeDetail}>閉じる</button>
-            </div>
-            <div className={styles["detail-header"]}>
-              <p className={styles["title"]}>{qual.title}</p>
-            </div>
-          </div>
+          <button onClick={closeDetail} className={styles["close-btn"]}>
+            <span className={styles["close"]}></span>
+          </button>
+          <p className={styles["header"]}>{qual.title}</p>
           <div className={styles["body"]}>
             <div className={styles["detail-body"]}>
               <section className={styles["content"]}>
                 <div className={styles["qual-content"]}>
-                  <p className={styles["content"]}>{qual.content}</p>
+                  <p className={styles["content"]}>{qual.comment}</p>
                 </div>
               </section>
               <section className={styles["bool"]}>
@@ -43,12 +55,27 @@ const Detail: NextPage<Props> = (props) => {
               </section>
             </div>
           </div>
+          <div className={styles["actions"]}>
+            <button
+              className={`${styles["edit-btn"]} ${styles["-edit"]}`}
+              onClick={() => deleteQualification(qual.id)}
+            >
+              編集
+            </button>
+            <button
+              className={`${styles["delete-btn"]} ${styles["-delete"]}`}
+              onClick={() => deleteQualification(qual.id)}
+            >
+              削除
+            </button>
+          </div>
         </div>
-      </>
-    );
-  } else {
-    return null;
-  }
+      </CSSTransition>
+    </>
+  );
 };
 
-export default Detail;
+export default React.memo(
+  Detail,
+  (prev, next) => prev.isDetail === next.isDetail
+);

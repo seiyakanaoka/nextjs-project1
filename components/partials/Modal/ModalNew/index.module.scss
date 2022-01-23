@@ -1,0 +1,195 @@
+.overlay {
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+
+  > .modal {
+    display: flex;
+    flex-direction: column;
+    background-color: #eeeeee;
+    padding: 20px;
+    border-radius: 16px;
+
+    > .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    > .action {
+      margin-top: 24px;
+      text-align: center;
+    }
+  }
+}
+
+.header-title {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.close-btn {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+
+  > .close {
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 30px;
+  }
+
+  > .close::before,
+  .close::after {
+    /* 共通設定 */
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px; /* 棒の幅（太さ） */
+    height: 20px; /* 棒の高さ */
+    background: #333;
+  }
+
+  > .close::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  > .close::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+
+  > .border {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+  }
+
+  > .title {
+    font-size: 18px;
+    padding: 14px;
+    border: 0;
+    background-color: transparent;
+    margin: 0;
+  }
+
+  > .title:focus {
+    outline: 0;
+  }
+
+  > .comment {
+    height: 50px;
+    font-size: 18px;
+    padding: 14px;
+    border: 0;
+    background-color: transparent;
+  }
+
+  > .comment:focus {
+    outline: 0;
+  }
+}
+
+.done-form,
+.pass-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.done-content,
+.pass-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+
+  > .select {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    height: 30px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  > .done,
+  .pass {
+    display: none;
+  }
+
+  > .select.-ok {
+    color: #fff;
+    background-color: #66cc66;
+  }
+
+  > .select.-okactive {
+    background-color: #006400;
+    border-radius: 6px;
+  }
+
+  > .select.-no {
+    color: #fff;
+    background-color: #66ccff;
+  }
+
+  > .select.-noactive {
+    background-color: #4682b4;
+    border-radius: 6px;
+  }
+
+  > .select.-out {
+    color: #fff;
+    background-color: #ff6666;
+  }
+
+  > .select.-outactive {
+    background-color: #b22222;
+    border-radius: 6px;
+  }
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 8px;
+  color: #fff;
+  background-color: #e0e0e0;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+
+  &.-active {
+    color: #fff;
+    background-color: #0099ff;
+  }
+
+  &:active {
+    background-color: #4682b4;
+    border-radius: 6px;
+  }
+}

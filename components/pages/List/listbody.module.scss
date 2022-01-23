@@ -1,0 +1,54 @@
+.list-body {
+  width: 100%;
+  padding: 20px;
+  background-color: #f8f8f8;
+  box-shadow: 0 0 2px #000;
+}
+
+.block-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  &::after {
+    content: "";
+    display: block;
+    width: calc(100% / 3);
+  }
+
+  > .blocks {
+    display: flex;
+    width: calc(100% / 3);
+    padding: 10px;
+  }
+}
+
+.qualification-content {
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 0 4px gray;
+  flex: 1;
+  cursor: pointer;
+
+  &.-undone {
+    background-color: #66ccff;
+  }
+
+  &.-pass {
+    background-color: #66cc66;
+  }
+
+  &.-failure {
+    background-color: #ff6666;
+  }
+
+  > .title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  > .content {
+    font-size: 16px;
+  }
+}
