@@ -1,10 +1,12 @@
-import type { NextPage } from 'next'
-import StartPage from '@/components/partials/StartPage/StartPage'
+import type { NextPage } from "next";
+import StartPage from "@/components/pages/StartPage/StartPage";
 
 const Home: NextPage = () => {
   return (
-    <StartPage/ >
-  )
-}
+    <>
+      <StartPage />
+    </>
+  );
+};
 
-export default Home
+export default Home;

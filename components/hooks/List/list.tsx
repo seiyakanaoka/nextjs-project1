@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { qualification } from "@/type/List/qualification";
+import { qualification } from "@/@types/List/qualification";
 import { useCrud } from "@/components/hooks/Crud/index";
 
 export const UseInput = () => {
@@ -34,22 +34,23 @@ export const UseInput = () => {
   /** 新規作成・編集モーダルの開閉 */
   const changeModalNew = () => setIsModalNew(!isModalNew);
 
-  const [id, setId] = useState(0);
-  const addId = (): number => {
-    setId(id + 1);
-    return id;
+  const [isModalUpdate, setIsModalUpdate] = useState<boolean>(false);
+
+  /** 新規作成・編集モーダルの開閉 */
+  const changeModalUpdate = () => {
+    setIsModalUpdate(!isModalUpdate);
   };
 
   return {
-    id,
     qual,
     isShow,
     isDetail,
     isModalNew,
-    addId,
+    isModalUpdate,
     closeDetail,
     openDetail,
     changeModal,
     changeModalNew,
+    changeModalUpdate,
   };
 };

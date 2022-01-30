@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { NextPage } from "next";
 import styles from "./listbody.module.scss";
-import { qualification, qualificationList } from "@/type/List/qualification";
+import { qualification, qualificationList } from "@/@types/List/qualification";
 
 type Props = {
   apiResponse: qualificationList;

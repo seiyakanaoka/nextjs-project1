@@ -1,14 +1,24 @@
 import React, { useEffect } from "react";
 import { NextPage } from "next";
+import UpdateModal from "@/components/partials/Modal/ModalUpdate/index";
+import { UseInput } from "@/components/hooks/List/list";
+import { useCrud } from "@/components/hooks/Crud/index";
 import { CSSTransition } from "react-transition-group";
 import styles from "@/components/partials/ListDetail/detail.module.scss";
 import DetailTrans from "@/assets/styles/Transition/DetailTransition.module.scss";
-import { qualification } from "@/type/List/qualification";
+import { qualification } from "@/@types/List/qualification";
 
 type Props = {
   qual: qualification;
   isDetail: boolean;
   closeDetail: () => void;
+  updateQualification: (
+    id: number,
+    title: string,
+    comment: string,
+    done: string,
+    pass: string
+  ) => void;
   deleteQualification: (id: number) => void;
 };
 
@@ -16,11 +26,17 @@ const Detail: NextPage<Props> = ({
   closeDetail,
   qual,
   isDetail,
+  updateQualification,
   deleteQualification,
 }) => {
   useEffect(() => {
     console.log("Detail");
+    setForm(qual);
   });
+  const { setForm } = useCrud();
+
+  const { isModalUpdate, changeModalUpdate } = UseInput();
+
   return (
     <>
       <CSSTransition
@@ -30,6 +46,13 @@ const Detail: NextPage<Props> = ({
         unmountOnExit
       >
         <div className={styles["detail-page"]}>
+          <UpdateModal
+            qual={qual}
+            isModalUpdate={isModalUpdate}
+            closeModalUpdate={changeModalUpdate}
+            updateQualification={updateQualification}
+            closeDetail={closeDetail}
+          />
           <button onClick={closeDetail} className={styles["close-btn"]}>
             <span className={styles["close"]}></span>
           </button>
@@ -58,7 +81,7 @@ const Detail: NextPage<Props> = ({
           <div className={styles["actions"]}>
             <button
               className={`${styles["edit-btn"]} ${styles["-edit"]}`}
-              onClick={() => deleteQualification(qual.id)}
+              onClick={changeModalUpdate}
             >
               編集
             </button>

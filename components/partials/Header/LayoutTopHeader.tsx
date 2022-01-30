@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { NextPage } from "next";
-import styles from "@/components/partials/Header/LayoutTopHeader.module.scss";
+import styles from "./LayoutTopHeader.module.scss";
 
 type Props = {
   title: string;

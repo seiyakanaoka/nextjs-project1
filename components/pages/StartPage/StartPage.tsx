@@ -1,8 +1,10 @@
 import type { NextPage } from "next";
 import Link from "next/link";
-import styles from "@/components/partials/StartPage/StartPage.module.scss";
+import styles from "@/components/pages/StartPage/StartPage.module.scss";
+import { useAuth } from "@/lib/AuthContext";
 
 const StartPage: NextPage = () => {
+  const { currentUser, login, logout } = useAuth();
   return (
     <>
       <div className={styles["start-page"]}>
@@ -23,6 +25,15 @@ const StartPage: NextPage = () => {
                 <a>start</a>
               </Link>
             </p>
+          </div>
+          <div>
+            {!currentUser && <button onClick={login}>ログイン</button>}
+            {currentUser && (
+              <div>
+                <p>{currentUser.email} でログイン</p>
+                <button onClick={logout}>ログアウト</button>
+              </div>
+            )}
           </div>
         </div>
       </div>

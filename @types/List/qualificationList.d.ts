@@ -2,7 +2,7 @@ export interface qualificationList {
   list: {
     id: number;
     title: string;
-    content: string;
+    comment: string;
     isDone: boolean;
     isPass: boolean;
   }[];
