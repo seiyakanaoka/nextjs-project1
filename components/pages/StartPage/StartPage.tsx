@@ -2,9 +2,13 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import styles from "@/components/pages/StartPage/StartPage.module.scss";
 import { useAuth } from "@/lib/AuthContext";
+import { auth } from "@/lib/firebase";
 
 const StartPage: NextPage = () => {
-  const { currentUser, login, logout } = useAuth();
+  const { currentUser } = useAuth();
+  const logout = () => {
+    return auth.signOut();
+  };
   return (
     <>
       <div className={styles["start-page"]}>
@@ -25,15 +29,6 @@ const StartPage: NextPage = () => {
                 <a>start</a>
               </Link>
             </p>
-          </div>
-          <div>
-            {!currentUser && <button onClick={login}>ログイン</button>}
-            {currentUser && (
-              <div>
-                <p>{currentUser.email} でログイン</p>
-                <button onClick={logout}>ログアウト</button>
-              </div>
-            )}
           </div>
         </div>
       </div>

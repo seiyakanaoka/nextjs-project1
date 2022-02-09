@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { NextPage } from "next";
+import React, { FC, useEffect } from "react";
 import styles from "./listbody.module.scss";
 import { qualification, qualificationList } from "@/@types/List/qualification";
 
@@ -8,7 +7,7 @@ type Props = {
   openDetail: (item: qualification) => void;
 };
 
-const ListBody: NextPage<Props> = ({ apiResponse, openDetail }) => {
+const ListBody: FC<Props> = ({ apiResponse, openDetail }) => {
   useEffect(() => {
     console.log("ListBody");
   });

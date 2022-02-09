@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { NextPage } from "next";
 import UpdateModal from "@/components/partials/Modal/ModalUpdate/index";
-import { UseInput } from "@/components/hooks/List/list";
+import { useModal } from "@/components/hooks/Modal/useModal";
 import { useCrud } from "@/components/hooks/Crud/index";
 import { CSSTransition } from "react-transition-group";
-import styles from "@/components/partials/ListDetail/detail.module.scss";
+import styles from "./detail.module.scss";
 import DetailTrans from "@/assets/styles/Transition/DetailTransition.module.scss";
 import { qualification } from "@/@types/List/qualification";
 
@@ -35,7 +35,7 @@ const Detail: NextPage<Props> = ({
   });
   const { setForm } = useCrud();
 
-  const { isModalUpdate, changeModalUpdate } = UseInput();
+  const { isShow, changeModal } = useModal();
 
   return (
     <>
@@ -48,8 +48,8 @@ const Detail: NextPage<Props> = ({
         <div className={styles["detail-page"]}>
           <UpdateModal
             qual={qual}
-            isModalUpdate={isModalUpdate}
-            closeModalUpdate={changeModalUpdate}
+            isModalUpdate={isShow}
+            closeModalUpdate={changeModal}
             updateQualification={updateQualification}
             closeDetail={closeDetail}
           />
@@ -81,7 +81,7 @@ const Detail: NextPage<Props> = ({
           <div className={styles["actions"]}>
             <button
               className={`${styles["edit-btn"]} ${styles["-edit"]}`}
-              onClick={changeModalUpdate}
+              onClick={changeModal}
             >
               編集
             </button>

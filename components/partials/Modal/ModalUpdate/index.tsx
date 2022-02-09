@@ -1,5 +1,4 @@
-import React, { useEffect, useLayoutEffect } from "react";
-import { NextPage } from "next";
+import { FC, useEffect, useLayoutEffect } from "react";
 import { useCrud } from "@/components/hooks/Crud/index";
 import { CSSTransition } from "react-transition-group";
 import styles from "./index.module.scss";
@@ -20,7 +19,7 @@ type Props = {
   closeDetail: () => void;
 };
 
-const ModalUpdate: NextPage<Props> = ({
+const ModalUpdate: FC<Props> = ({
   qual,
   isModalUpdate,
   closeModalUpdate,

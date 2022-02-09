@@ -23,15 +23,6 @@ const AuthProvider = ({ children }: Props): JSX.Element => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const login = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    return auth.signInWithRedirect(provider);
-  };
-
-  const logout = () => {
-    return auth.signOut();
-  };
-
   useEffect(() => {
     return auth.onAuthStateChanged((user: User | null) => {
       setCurrentUser(user);
@@ -39,14 +30,8 @@ const AuthProvider = ({ children }: Props): JSX.Element => {
     });
   }, []);
 
-  const value: AuthContextType = {
-    currentUser,
-    login,
-    logout,
-  };
-
   return (
-    <AuthContext.Provider value={value}>
+    <AuthContext.Provider value={{ currentUser }}>
       {isLoading ? <p>Loading...</p> : children}
     </AuthContext.Provider>
   );

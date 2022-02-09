@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
-import Link from "next/link";
-import { NextPage } from "next";
-import { UseInput } from "@/components/hooks/List/list";
+import { FC, useEffect, memo } from "react";
+import { useModal } from "@/components/hooks/Modal/useModal";
 import ModalNew from "@/components/partials/Modal/ModalNew/index";
 import { CSSTransition } from "react-transition-group";
 import styles from "@/components/partials/Modal/ModalContent/index.module.scss";
@@ -18,16 +16,12 @@ type Props = {
   ) => void;
 };
 
-const ModalContent: NextPage<Props> = ({
-  isShow,
-  changeModal,
-  addQualification,
-}) => {
+const ModalContent: FC<Props> = ({ isShow, changeModal, addQualification }) => {
   useEffect(() => {
     console.log("ModalContent");
   });
 
-  const { isModalNew, changeModalNew } = UseInput();
+  const { isFormModal, changeFormModal } = useModal();
 
   return (
     <CSSTransition
@@ -38,24 +32,19 @@ const ModalContent: NextPage<Props> = ({
     >
       <div className={styles["overlay"]}>
         <ModalNew
-          isModalNew={isModalNew}
+          isModalNew={isFormModal}
           closeModalContent={changeModal}
-          closeModalNew={changeModalNew}
+          closeModalNew={changeFormModal}
           addQualification={addQualification}
         />
         <div className={styles["modal-page"]}>
           <div className={styles["modal"]} onClick={(e) => e.stopPropagation()}>
             <div className={styles["modal-links"]}>
-              <div className={styles["back"]}>
-                <Link href="/">
-                  <a id={styles["back-link"]}>Home</a>
-                </Link>
-              </div>
-              <div className={styles["new"]} onClick={changeModalNew}>
-                <button className={styles["new-btn"]}>New</button>
+              <div className={styles["new"]} onClick={changeFormModal}>
+                <button className={styles["new-btn"]}>新規登録</button>
               </div>
               <div className={styles["close"]} onClick={changeModal}>
-                <button className={styles["cancel-btn"]}>Cancel</button>
+                <button className={styles["cancel-btn"]}>戻る</button>
               </div>
             </div>
           </div>
@@ -65,7 +54,7 @@ const ModalContent: NextPage<Props> = ({
   );
 };
 
-export default React.memo(
+export default memo(
   ModalContent,
   (prev, next) =>
     prev.addQualification === next.addQualification ||

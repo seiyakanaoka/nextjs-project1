@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { NextPage } from "next";
+import { FC, useEffect } from "react";
 import { useCrud } from "@/components/hooks/Crud/index";
 import { CSSTransition } from "react-transition-group";
 import styles from "./index.module.scss";
@@ -17,7 +16,7 @@ type Props = {
   closeModalContent: () => void;
 };
 
-const ModalNew: NextPage<Props> = ({
+const ModalNew: FC<Props> = ({
   isModalNew,
   closeModalNew,
   addQualification,
@@ -25,7 +24,9 @@ const ModalNew: NextPage<Props> = ({
 }) => {
   useEffect(() => {
     console.log("ModalNew");
+    console.log("isModalNew: ", isModalNew);
   });
+
   const {
     isDone,
     isPass,

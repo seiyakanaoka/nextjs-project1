@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import { NextPage } from "next";
 import LayoutTopHeader from "@/components/partials/Header/LayoutTopHeader";
-import Detail from "@/components/partials/ListDetail/detail";
+import Detail from "@/components/pages/ListDetail/detail";
 import ModalContent from "@/components/partials/Modal/ModalContent";
 import ListBody from "@/components/pages/List/listbody";
 import NoContent from "@/components/partials/NoContent/nocontent";
 import { CSSTransition } from "react-transition-group";
 import styles from "pages/list/index.module.scss";
-import { UseInput } from "@/components/hooks/List/list";
+import { useModal } from "@/components/hooks/Modal/useModal";
+import { useListDetail } from "@/components/hooks/ListDetail/useListDetail";
 import { useCrud } from "@/components/hooks/Crud/index";
 import ModalTrans from "@/assets/styles/Transition/ModalTransition.module.scss";
 
@@ -15,8 +16,8 @@ const List: NextPage = () => {
   useEffect(() => {
     console.log("List");
   });
-  const { qual, isShow, isDetail, closeDetail, openDetail, changeModal } =
-    UseInput();
+  const { isShow, changeModal } = useModal();
+  const { qual, isDetail, openDetail, closeDetail } = useListDetail();
 
   const {
     setNewQualificationList,
@@ -55,9 +56,7 @@ const List: NextPage = () => {
         <div className={styles["overlay"]}></div>
       </CSSTransition>
       <div className={`${styles["list-page"]}`}>
-        <div className={styles["header"]}>
-          <LayoutTopHeader title={"List"} openModal={changeModal} />
-        </div>
+        <LayoutTopHeader title={"List"} openModal={changeModal} />
         <div className={styles["body"]}>
           {newQualificationList && newQualificationList.list.length ? (
             <ListBody
